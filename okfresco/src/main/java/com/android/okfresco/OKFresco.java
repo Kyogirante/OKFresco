@@ -66,7 +66,7 @@ public class OKFresco {
    * 加载图片到 {@link com.facebook.drawee.view.SimpleDraweeView}
    *
    * @param uri 资源URI
-   * @return
+   * @return {@link OKLoadImageRequestBuilderWrapper}
    */
   public static OKLoadImageRequestBuilderWrapper load(Uri uri) {
     return OKLoadImageRequestBuilderWrapper.newRequest(uri);
@@ -76,7 +76,7 @@ public class OKFresco {
    * 加载图片到 {@link com.facebook.drawee.view.SimpleDraweeView}
    *
    * @param resId 资源id
-   * @return
+   * @return {@link OKLoadImageRequestBuilderWrapper}
    */
   public static OKLoadImageRequestBuilderWrapper load(@DrawableRes int resId) {
     return OKLoadImageRequestBuilderWrapper.newRequest(resId);
@@ -86,23 +86,26 @@ public class OKFresco {
    * 加载图片到 {@link com.facebook.drawee.view.SimpleDraweeView}
    *
    * @param request 请求
-   * @return
+   * @return {@link OKFrescoControllerBuilderWrapper}
    */
   public static OKFrescoControllerBuilderWrapper load(ImageRequest request) {
     return OKFrescoControllerBuilderWrapper.newWrapper(request);
   }
 
+  /**
+   * @param requests 请求
+   * @return {@link OKFrescoControllerBuilderWrapper}
+   */
   public static OKFrescoControllerBuilderWrapper load(ImageRequest[] requests) {
     return OKFrescoControllerBuilderWrapper.newWrapper(requests);
   }
 
   /**
    * 加载图片到 {@link android.widget.ImageView}
-   * <br/>
    * 如果是资源，使用 {@link com.facebook.common.util.UriUtil#getUriForResourceId(int)} 做转换
    *
    * @param uri 资源URI
-   * @return
+   * @return {@link OKImageViewRequestBuilderWrapper}
    */
   public static OKImageViewRequestBuilderWrapper loadIntoImageView(Uri uri) {
     return OKImageViewRequestBuilderWrapper.newRequest(uri);
@@ -112,7 +115,7 @@ public class OKFresco {
    * 下载图片.
    *
    * @param uri 资源URI
-   * @return
+   * @return {@link OKDownloadImageRequestBuilderWrapper}
    */
   public static OKDownloadImageRequestBuilderWrapper download(Uri uri) {
     return OKDownloadImageRequestBuilderWrapper.newRequest(uri);
@@ -121,7 +124,7 @@ public class OKFresco {
   /**
    * 获取下载图片处理类.
    *
-   * @return
+   * @return {@link ImagePipeline}
    */
   public static ImagePipeline getImagePipeline() {
     return Fresco.getImagePipeline();
@@ -130,7 +133,7 @@ public class OKFresco {
   /**
    * 获取下载图片处理类工厂.
    *
-   * @return
+   * @return {@link ImagePipelineFactory}
    */
   public static ImagePipelineFactory getImagePipelineFactory() {
     return Fresco.getImagePipelineFactory();
@@ -139,7 +142,7 @@ public class OKFresco {
   /**
    * 是否初始化.
    *
-   * @return
+   * @return 是否初始化
    */
   public static boolean hasBeenInitialized() {
     return Fresco.hasBeenInitialized();
@@ -155,6 +158,8 @@ public class OKFresco {
 
   /**
    * 获取图片的真实格式
+   * @param picturePath
+   * @return 图片格式
    */
   public static String getImageFormat(String picturePath) {
     try {
@@ -170,9 +175,9 @@ public class OKFresco {
   /**
    * 获取缓存
    *
-   * @param context
-   * @param url
-   * @return
+   * @param context context
+   * @param url 网络url
+   * @return 缓存文件
    */
   public static File getCachedBitmap(Context context, String url) {
     Uri uri = Uri.parse(url);
